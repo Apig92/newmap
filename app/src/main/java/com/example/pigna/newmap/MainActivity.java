@@ -1,22 +1,18 @@
 package com.example.pigna.newmap;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.journaldev.MapsInAction.R;
-
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -53,6 +49,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(getApplicationContext(), "This will take you to the homepage, yo",
+                    Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if (id == R.id.action_settings2) {
+            Toast.makeText(getApplicationContext(), "This will take you to the settings, yo",
+                    Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -62,8 +66,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         GoogleMap mMap = googleMap;
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
-        // Add a marker in Sydney and move the camera
+
+        // Add a marker in Dublin and move the camera
         LatLng dublin = new LatLng(53.3498, -6.2603);
         mMap.addMarker(new MarkerOptions().position(dublin).title("Marker in Dublin"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dublin,13));
